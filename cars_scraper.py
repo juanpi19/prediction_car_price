@@ -6,7 +6,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 import pandas as pd
 
-PATH = "/Users/juanpih19/Desktop/programming/chromedriver"
+PATH = "/Users/juanpih19/Desktop/Metis/Regression/Regression Project/chromedriver"
 driver = webdriver.Chrome(PATH)
 
 def access_website():
@@ -86,10 +86,10 @@ def get_info(links):
 
 
 def save_data(dictionary):
-    data = pd.read_csv("final_data.csv")
+    data = pd.read_csv("/Users/juanpih19/Desktop/Metis/Regression/Regression Project/final_data2.csv")
     new_data = pd.DataFrame(dictionary)
     final_data = pd.concat([data, new_data], ignore_index=True)
-    return final_data.to_csv("cars_data.csv", index=False)
+    return final_data.to_csv("/Users/juanpih19/Desktop/Metis/Regression/Regression Project/final_data2.csv", index=False)
 
 
 def next_page(num):
@@ -100,11 +100,12 @@ def next_page(num):
 
 
 if __name__ == '__main__':
-    num = 0
-    while num < 25:
+    num = 30
+    while num < 60:
         page_code = next_page(num)
         each_car = find_links(page_code)
         time.sleep(3)
         all_info = get_info(each_car)
-        save_data(all_info)
         num += 1
+
+    save_data(all_info)
